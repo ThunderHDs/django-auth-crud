@@ -23,13 +23,14 @@
                     <p>{{task.description}}</p>
 
                     <p>{{task.datecompleted|date:'M j Y:i'}}</p><!--Valor que aparecera cuando se use la view task_completed que trae las tareas completadas-->
+                    <form action="{% url 'complete_task' task.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-secondary">
+                            Complete
+                        </button>
+                    </form>
                 </a>
-                <form action="{% url 'complete_task' task.id %}" method="post">
-                    {% csrf_token %}
-                    <button class="btn btn-secondary">
-                        Complete
-                    </button>
-                </form>
+                
                 {% endfor %}
 
             </ul>
